@@ -2,7 +2,9 @@
 
 require_relative "wordnet_japan/version"
 
-module WordnetJapan
-  class Error < StandardError; end
-  # Your code goes here...
-end
+require "wordnet_japan/database"
+require "wordnet_japan/sense"
+require "wordnet_japan/synlink"
+require "wordnet_japan/synset_def"
+require "wordnet_japan/synset"
+require "wordnet_japan/word"
