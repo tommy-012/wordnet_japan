@@ -1,24 +1,34 @@
 # WordnetJapan
 
-TODO: Delete this and the text below, and describe your gem
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/wordnet_japan`. To experiment with that code, run `bin/console` for an interactive prompt.
+[日本語 WordNet](https://bond-lab.github.io/wnja/jpn/index.html) を Active Record で検索できます
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
-
 Install the gem and add to the application's Gemfile by executing:
 
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+    $ bundle add wordnet_japan
 
 If bundler is not being used to manage dependencies, install the gem by executing:
 
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+    $ gem install wordnet_japan
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'wordnet_japan'
+
+WordnetJapan::Database.connect(database: 'tmp/wnjpn.db')
+
+word = WordnetJapan::Word.find_by(lemma: 'キャンプ', pos: 'n')
+
+p word
+# =>
+# #<WordnetJapan::Word wordid: 234565, lang: "jpn", lemma: "キャンプ", pron: nil, pos: "noun">
+
+p word.synsets
+# =>
+# #<ActiveRecord::Associations::CollectionProxy [#<WordnetJapan::Synset synset: "05649960-n", pos: "n", name: "camp", src: "eng30">, #<WordnetJapan::Synset synset: "04411264-n", pos: "n", name: "collapsible_shelter", src: "eng30">, #<WordnetJapan::Synset synset: "02945813-n", pos: "n", name: "camp", src: "eng30">, #<WordnetJapan::Synset synset: "02945594-n", pos: "n", name: "summer_camp", src: "eng30">, #<WordnetJapan::Synset synset: "02945379-n", pos: "n", name: "camp", src: "eng30">, #<WordnetJapan::Synset synset: "01055165-n", pos: "n", name: "bivouacking", src: "eng30">, #<WordnetJapan::Synset synset: "02944826-n", pos: "n", name: "cantonment", src: "eng30">, #<WordnetJapan::Synset synset: "02945161-n", pos: "n", name: "camp", src: "eng30">]>
+```
 
 ## Development
 
